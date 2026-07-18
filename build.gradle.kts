@@ -1,81 +1,96 @@
-@file:Suppress("PropertyName", "VariableNaming")
-
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.fabric.loom)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.iridium)
-    alias(libs.plugins.iridium.publish)
-    alias(libs.plugins.iridium.upload)
+    `maven-publish`
 }
 
-group = property("maven_group")!!
-version = property("mod_version")!!
-base.archivesName.set(property("archives_base_name") as String)
-description = property("description") as String
+group = property("maven_group") as String
+version = property("mod_version") as String
 
-val modid: String by project
-val mod_name: String by project
-val modrinth_id: String? by project
-val curse_id: String? by project
+base {
+    archivesName.set(property("archives_base_name") as String)
+}
 
 repositories {
-    maven("https://teamvoided.org/releases")
     mavenCentral()
-}
-
-
-modSettings {
-    modId(modid)
-    modName(mod_name)
-
-    entrypoint("main", "com.theendercore.trowel.TrowelMod")
+    maven("https://maven.fabricmc.net/")
 }
 
 dependencies {
-    modImplementation(fileTree("libs"))
+    minecraft(
+        "com.mojang:minecraft:${property("minecraft_version")}"
+    )
+
+    implementation(
+        "net.fabricmc:fabric-loader:${property("loader_version")}"
+    )
+
+    implementation(
+        "net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}"
+    )
+
+    implementation(
+        "net.fabricmc:fabric-language-kotlin:1.13.13+kotlin.2.4.10"
+    )
 }
 
 loom {
     runs {
-        create("TestWorld") {
+        named("client") {
             client()
-            ideConfigGenerated(true)
             runDir("run")
-            programArgs("--quickPlaySingleplayer", "test")
+        }
+
+        named("server") {
+            server()
+            runDir("run-server")
         }
     }
 }
 
-tasks {
-    val targetJavaVersion = 17
-    withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        options.release.set(targetJavaVersion)
-    }
+tasks.processResources {
+    inputs.property("version", project.version)
+    inputs.property("minecraft_version", property("minecraft_version"))
+    inputs.property("loader_version", property("loader_version"))
 
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = targetJavaVersion.toString()
-    }
-
-    java {
-        toolchain.languageVersion.set(JavaLanguageVersion.of(JavaVersion.toVersion(targetJavaVersion).toString()))
-        withSourcesJar()
+    filesMatching("fabric.mod.json") {
+        expand(
+            "version" to project.version,
+            "minecraft_version" to property("minecraft_version"),
+            "loader_version" to property("loader_version")
+        )
     }
 }
 
-uploadConfig {
-//    debugMode = true
-    modrinthId = modrinth_id
-    curseId = curse_id
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+    options.release.set(25)
+}
 
-    changeLog = "- fixed bug with rechisel\n- update to 20.6"
-    // FabricApi
-    modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
-    curseDependency("fabric-api", uploadConfig.REQUIRED)
-    // Fabric Language Kotlin
-    modrinthDependency("Ha28R6CL", uploadConfig.REQUIRED)
-    curseDependency("fabric-language-kotlin", uploadConfig.REQUIRED)
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.fromTarget("25"))
+    }
+
+    jvmToolchain(25)
+}
+
+java {
+    withSourcesJar()
+
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = property("archives_base_name") as String
+            from(components["java"])
+        }
+    }
 }
