@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "trowel",
+  "version": "${version}",
+  "name": "Trowel",
+  "description": "A Fabric port of Quark's Trowel item.",
+  "authors": [
+    "TheEnderCore"
+  ],
+  "contact": {
+    "sources": "https://github.com/golso4243/Trowel"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "com.theendercore.trowel.TrowelMod"
+      }
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=25",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*"
+  }
+}
