@@ -10,6 +10,9 @@ plugins {
 group = property("maven_group") as String
 version = property("mod_version") as String
 
+val minecraftVersion = providers.gradleProperty("minecraft_version").get()
+val loaderVersion = providers.gradleProperty("loader_version").get()
+
 base {
     archivesName.set(property("archives_base_name") as String)
 }
@@ -53,14 +56,16 @@ loom {
 
 tasks.processResources {
     inputs.property("version", project.version)
-    inputs.property("minecraft_version", property("minecraft_version"))
-    inputs.property("loader_version", property("loader_version"))
+    inputs.property("minecraft_version", minecraftVersion)
+    inputs.property("loader_version", loaderVersion)
 
     filesMatching("fabric.mod.json") {
         expand(
-            "version" to project.version,
-            "minecraft_version" to property("minecraft_version"),
-            "loader_version" to property("loader_version")
+            mapOf(
+                "version" to project.version,
+                "minecraft_version" to minecraftVersion,
+                "loader_version" to loaderVersion
+            )
         )
     }
 }
