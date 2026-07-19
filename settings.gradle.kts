@@ -1,4 +1,4 @@
-rootProject.name = "Trowel"
+rootProject.name = "Trowel Continued"
 pluginManagement {
     repositories {
         maven("https://maven.fabricmc.net/") { name = "Fabric" }

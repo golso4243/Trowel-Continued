@@ -1,16 +1,21 @@
 {
   "schemaVersion": 1,
-  "id": "trowel",
+  "id": "trowel_continued",
   "version": "${version}",
-  "name": "Trowel",
-  "description": "A Fabric port of Quark's Trowel item.",
+  "name": "Trowel Continued",
+  "description": "An unofficial maintained fork of Trowel (by TheEnderCore) updated for modern Fabric Minecraft versions.",
   "authors": [
-    "TheEnderCore"
+    "SwornHero"
+  ],
+  "contributors": [
+    "TheEnderCore - original Trowel author"
   ],
   "contact": {
-    "sources": "https://github.com/golso4243/Trowel"
+    "sources": "https://github.com/golso4243/Trowel-Continued",
+    "issues": "https://github.com/golso4243/Trowel-Continued/issues"
   },
   "license": "MIT",
+  "icon": "assets/trowel_continued/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -26,5 +31,8 @@
     "java": ">=25",
     "fabric-api": "*",
     "fabric-language-kotlin": "*"
+  },
+  "breaks": {
+    "trowel": "*"
   }
 }

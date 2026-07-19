@@ -1,16 +1,35 @@
-# Trowel
-This mod is a simple port of the Quark mods Trowel item. Its been written from scratch by me. I just borrowed the original idea from Quark.
+# Trowel Continued
+
+Trowel Continued is an unofficial maintained fork of the original **Trowel** mod by TheEnderCore.
+
+The mod is inspired by the Trowel item from Quark and makes randomized block placement faster and easier for builders.
+
+## Features
+
+- Right-click a block face with the Trowel to place a random compatible block from your hotbar.
+- Works in both Survival and Creative mode.
+- Properly consumes blocks in Survival.
+- Supports singleplayer and dedicated multiplayer servers.
+- Required on both the client and server.
+
+## Crafting
+
+To craft the Trowel, you need:
+
+- 1 Stick
+- 2 Ingots
 
 ## Dependencies
-This mod Depends on [Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
-*(I'm sorry for dependency)*
 
-## Features 
-When right clicked it picks a random block from your hotbar and places is down. *(For a visual demonstration go to the images tab)* </br>To craft the trowel you need 1 stick and 2 ingots. 
+Trowel Continued requires:
 
+- [Fabric API](https://modrinth.com/mod/fabric-api)
+- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
 
-*PS. Thanks Astra for icon art*
+## Credits
 
-Thank you unroman for Ukrainian translation!
+- Original Trowel mod by TheEnderCore
+- Original concept inspired by Quark
+- Minecraft 26.2 port and continued maintenance by SwornHero
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M7DWJCH)
+This project is independently maintained and is not affiliated with or officially endorsed by TheEnderCore or the Quark development team.
