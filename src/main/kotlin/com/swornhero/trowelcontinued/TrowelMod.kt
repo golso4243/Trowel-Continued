@@ -1,4 +1,4 @@
-package com.theendercore.trowel
+package com.swornhero.trowelcontinued
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents
@@ -15,12 +15,12 @@ import org.slf4j.LoggerFactory
 
 @Suppress("MemberVisibilityCanBePrivate")
 object TrowelMod : ModInitializer {
-    const val MODID = "trowel"
+    const val MODID = "trowel_continued"
 
     val log: Logger = LoggerFactory.getLogger(MODID)
 
     private val TROWEL_ID: Identifier =
-        Identifier.fromNamespaceAndPath(MODID, MODID)
+        Identifier.fromNamespaceAndPath(MODID, "trowel")
 
     private val TROWEL_KEY: ResourceKey<Item> =
         ResourceKey.create(Registries.ITEM, TROWEL_ID)

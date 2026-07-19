@@ -44,12 +44,10 @@ loom {
     runs {
         named("client") {
             client()
-            runDir("run")
         }
 
         named("server") {
             server()
-            runDir("run-server")
         }
     }
 }

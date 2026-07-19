@@ -1,4 +1,4 @@
-package com.theendercore.trowel
+package com.swornhero.trowelcontinued
 
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.InteractionResult

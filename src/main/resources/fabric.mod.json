@@ -21,7 +21,7 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "com.theendercore.trowel.TrowelMod"
+        "value": "com.swornhero.trowelcontinued.TrowelMod"
       }
     ]
   },
