@@ -14,12 +14,6 @@ import net.minecraft.world.phys.BlockHitResult
 class Trowel(properties: Properties) : Item(properties) {
 
     override fun useOn(context: UseOnContext): InteractionResult {
-        val level = context.level
-
-        if (level.isClientSide) {
-            return InteractionResult.PASS
-        }
-
         val player = context.player ?: return InteractionResult.PASS
         val inventory = player.inventory
 
@@ -35,6 +29,14 @@ class Trowel(properties: Properties) : Item(properties) {
 
         if (placeable.isEmpty()) {
             return InteractionResult.PASS
+        }
+
+        /*
+         * The actual placement remains server-side, but SUCCESS tells the
+         * client that the item was used and triggers the normal hand swing.
+         */
+        if (context.level.isClientSide) {
+            return InteractionResult.SUCCESS
         }
 
         val originalSlot = inventory.selectedSlot
