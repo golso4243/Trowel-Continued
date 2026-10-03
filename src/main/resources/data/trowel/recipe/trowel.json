@@ -2,18 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minecraft:stick",
+    "X": "minecraft:iron_ingot"
   },
   "pattern": [
     " XX",
     "#  "
   ],
   "result": {
-    "item": "trowel:trowel"
+    "id": "trowel_continued:trowel",
+    "count": 1
   }
 }

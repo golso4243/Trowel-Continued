@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "trowel:trowel"
-            ]
+            "items": "trowel_continued:trowel"
           }
         ]
       },
@@ -22,7 +20,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "trowel:trowel"
+      "id": "trowel_continued:trowel"
     },
     "show_toast": true,
     "title": {
